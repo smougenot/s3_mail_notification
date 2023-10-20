@@ -1,0 +1,10 @@
+# S3 Mail Notification
+
+## Goal
+
+Code for deploying lambda answering S3 notification in order to send mail.
+
+## Code
+
+Python code is managed with PipEnv.
+Some automated tests are provided.
