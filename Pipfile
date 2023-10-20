@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+boto3 = "*"
+
+[dev-packages]
+pytest = "*"
+moto = {extras = ["s3", "ses"], version = "*"}
+pytest-cov = "*"
+db-sqlite3 = "*"
+importlib-metadata = "*"
+typing_extensions = "*"
+
+[requires]
+python_version = "3.10"
