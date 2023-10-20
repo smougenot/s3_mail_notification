@@ -1,3 +1,5 @@
+![CI Job](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
 # S3 Mail Notification
 
 ## Goal
