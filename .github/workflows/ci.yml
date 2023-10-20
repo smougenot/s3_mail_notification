@@ -46,6 +46,14 @@ jobs:
           pipenv install -d
           pipenv run pytest
 
+  lint:
+    name: Lint_Job
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Lint Code Base
         uses: super-linter/super-linter@v5
         env:
