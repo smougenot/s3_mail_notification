@@ -1,4 +1,4 @@
-![CI Job](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+image:https://github.com/smougenot/s3_mail_notification/actions/workflows/ci.yml/badge.svg[CI Job]
 
 # S3 Mail Notification
 
