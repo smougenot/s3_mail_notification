@@ -33,9 +33,14 @@ jobs:
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
+        id: tell_me_all
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pipenv'
+          cache-dependency-path: |
+            Pipfile.lock
+
+      - run: echo '${{ steps.tell_me_all.outputs.cache-hit }}' # true if cache-hit occurred on the primary key
 
       - name: Install tooling
         run: |
