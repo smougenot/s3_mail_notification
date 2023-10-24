@@ -1,13 +1,8 @@
-
-variable "cloudwatch_log_retention_in_days" {
-  default = 7
-}
-
 locals {
   description = "created by terraform module github.com/dirt-simple/terraform-aws-s3-event-bus"
-  name        = "dirt-simple-s3-event-bus"
+  name        = var.lambda_name
 }
-
+#TODO allow to choose archive
 data "archive_file" "lambda" {
   type        = "zip"
   output_path = "${path.module}/.zip/lambda.zip"
@@ -20,17 +15,17 @@ resource "aws_lambda_function" "lambda" {
   filename                       = data.archive_file.lambda.output_path
   source_code_hash               = data.archive_file.lambda.output_base64sha256
   role                           = aws_iam_role.lambda.arn
-  runtime                        = "python3.6"
-  handler                        = "index.handler"
-  memory_size                    = 128
-  reserved_concurrent_executions = 15
+  runtime                        = var.lambda_runtime
+  handler                        = var.lambda_handler
+  memory_size                    = var.lambda_memory_size
+  reserved_concurrent_executions = var.lambda_reserved_concurrent_executions
   publish                        = true
   description                    = local.description
-  tags                           = var.tags
 
   environment {
     variables = {
-      S3_EVENT_BUS_TOPIC_ARN = aws_sns_topic.event_bus_topic.arn
+      # TODO define mail environment variables
+      NEED_MAIl_SETUP = ""
     }
   }
 }
@@ -38,7 +33,6 @@ resource "aws_lambda_function" "lambda" {
 resource "aws_cloudwatch_log_group" "lambda" {
   name              = "/aws/lambda/${local.name}"
   retention_in_days = var.cloudwatch_log_retention_in_days
-  tags              = var.tags
 }
 
 output "s3_event_bus_topic_arn" {
