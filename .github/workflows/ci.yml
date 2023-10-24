@@ -38,7 +38,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pipenv'
           cache-dependency-path: |
-            Pipfile.lock
+            lambda_code/Pipfile.lock
 
       - run: echo '${{ steps.tell_me_all.outputs.cache-hit }}' # true if cache-hit occurred on the primary key
 
@@ -49,6 +49,7 @@ jobs:
 
       - name: Update venv using pipenv and run tests
         run: |
+          cd lambda_code
           pipenv install -d
           pipenv run pytest
 
