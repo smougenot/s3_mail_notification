@@ -8,6 +8,6 @@ variable "lambda_function_name" {
 }
 variable "events_to_notify" {
   description = "List of events tot rigger notification for. Default is on creation. See aws_s3_bucket_notification attribute events for more details."
-  type = list(string)
+  type        = list(string)
   default     = ["s3:ObjectCreated:*"]
 }

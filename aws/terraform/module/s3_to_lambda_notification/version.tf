@@ -1,7 +1,8 @@
 terraform {
   required_providers {
-    template = {
-      aws = "~> 4.51"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.19"
     }
   }
 }
